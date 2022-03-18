@@ -26,7 +26,7 @@ welcomeMsg = """Welcome. This program allows a user to see the MAC throughput in
 normal and best-case scenarios for various 802.11 IEEE WLAN standards.\n\n"""
 
 numOptions = len(displayOptions) # number of options (number of keys in displayOptions dictionary)
-userDone = False # a boolean variable to flag is user is done or not
+userDone = False # a boolean variable to flag if the user is done or not
 
 print(welcomeMsg) # print the welcome message once at the start
 
@@ -34,9 +34,23 @@ while (userDone == False):
     print("The following options are available:\n")
     for option in range(1, numOptions+1):
         print(f"{option}: {displayOptions[option]}\n")
-    print("Are you finished?")
-    answer = input() # take the user's answer from keyboard input
-    if (answer == "y"):
-        userDone = True
-    else:
-        print("No selected. Allowing the user to choose another standard.")
+    print("Please enter the option number you want to investigate:\n")
+    validOption = False # only set to True when user has chosen a valid option
+    while (validOption == False):
+        optionNum = int(input()) # take the user's input, and cast it to an int
+        if optionNum not in range(1, numOptions+1):
+            print("Please enter a valid option.")
+        else:
+            validOption = True
+    chosenStandard = displayOptions[optionNum] # the IEEE 802.11 selected by the user
+    print(f"\nWould you like to choose the maximum or minimum data rate for the {chosenStandard} standard?")
+    print("\n1: Maximum data rate\n2: Minimum data rate\n")
+    validOption = False
+    while (validOption == False):
+        optionNum = int(input()) # take the user's input, and cast it to an int
+        if optionNum not in range(1, 3):
+            print("Please enter a valid option.")
+        else:
+            validOption = True
+    userDone = True
+
