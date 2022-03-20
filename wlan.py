@@ -330,9 +330,15 @@ while (userDone == False):
             ACK4SS = spatialStreamDetails["4 SS"]["ACK at min rate"]
             tcpACK4SS = spatialStreamDetails["4 SS"]["tcpACK at min rate"]
         if (chosenProtocol == "UDP"):
-            timeToSend = udp(DIFS, preamble4SS, RTS4SS, CTS4SS, SIFS, data4SS, ACK4SS)
+            if (chosenDataRate == "min"):
+                timeToSend = udp(DIFS, preamble4SS, RTS4SS, CTS4SS, SIFS, data4SS, ACK4SS)
+            else:
+                timeToSend = udp(DIFS, preamble4SS, RTS, CTS, SIFS, data4SS, ACK)
         elif (chosenProtocol == "TCP"):
-            timeToSend = tcp(DIFS, preamble4SS, RTS4SS, CTS4SS, SIFS, data4SS, ACK4SS, tcpACK4SS)
+            if (chosenDataRate == "min"):
+                timeToSend = tcp(DIFS, preamble4SS, RTS4SS, CTS4SS, SIFS, data4SS, ACK4SS, tcpACK4SS)
+            else:
+                timeToSend = tcp(DIFS, preamble4SS, RTS, CTS, SIFS, data, ACK, tcpACK4SS)
         print("\n\nAnd using a 40 MHz channel with 4 spatial streams and a bitrate of 600 Mbps:\n")
         throughput = (12000)/(timeToSend) # 12000 bits divided by the time to send
         print(f"\n\tThe time to send a packet is {timeToSend} microseconds")
@@ -358,11 +364,19 @@ while (userDone == False):
             ACK8SS = spatialStreamDetails["8 SS"]["ACK at min rate"]
             tcpACK3SS = spatialStreamDetails["3 SS"]["tcpACK at min rate"]
         if (chosenProtocol == "UDP"):
-            timeToSend3SS = udp(DIFS, preamble3SS, RTS3SS, CTS3SS, SIFS, data3SS, ACK3SS)
-            timeToSend8SS = udp(DIFS, preamble8SS, RTS8SS, CTS8SS, SIFS, data8SS, ACK8SS)
+            if (chosenDataRate == "min"):
+                timeToSend3SS = udp(DIFS, preamble3SS, RTS3SS, CTS3SS, SIFS, data3SS, ACK3SS)
+                timeToSend8SS = udp(DIFS, preamble8SS, RTS8SS, CTS8SS, SIFS, data8SS, ACK8SS)
+            else:
+                timeToSend3SS = udp(DIFS, preamble3SS, RTS, CTS, SIFS, data3SS, ACK)
+                timeToSend8SS = udp(DIFS, preamble8SS, RTS, CTS, SIFS, data8SS, ACK)
         elif (chosenProtocol == "TCP"):
-            timeToSend3SS = tcp(DIFS, preamble3SS, RTS3SS, CTS3SS, SIFS, data3SS, ACK3SS, tcpACK3SS)
-            timeToSend8SS = tcp(DIFS, preamble8SS, RTS8SS, CTS8SS, SIFS, data8SS, ACK8SS, tcpACK8SS)
+            if (chosenDataRate == "min"):
+                timeToSend3SS = tcp(DIFS, preamble3SS, RTS3SS, CTS3SS, SIFS, data3SS, ACK3SS, tcpACK3SS)
+                timeToSend8SS = tcp(DIFS, preamble8SS, RTS8SS, CTS8SS, SIFS, data8SS, ACK8SS, tcpACK8SS)
+            else:
+                timeToSend3SS = tcp(DIFS, preamble3SS, RTS, CTS, SIFS, data3SS, ACK, tcpACK3SS)
+                timeToSend8SS = tcp(DIFS, preamble8SS, RTS, CTS, SIFS, data8SS, ACK, tcpACK8SS)
         throughput3SS = (12000)/(timeToSend3SS) # throughput when using 3 spatial streams
         throughput8SS = (12000)/(timeToSend8SS)
         print("\n\nAnd using an 80 MHz channel with 3 spatial streams and a bitrate of 1300 Mbps:\n")
@@ -385,9 +399,15 @@ while (userDone == False):
             RTS8SS = spatialStreamDetails["8 SS"]["RTS at min rate"]
             ACK8SS = spatialStreamDetails["8 SS"]["ACK at min rate"]
         if (chosenProtocol == "UDP"):
-            timeToSend8SS = udp(DIFS, preamble8SS, RTS8SS, CTS8SS, SIFS, data8SS, ACK8SS)
+            if (chosenDataRate == "min"):
+                timeToSend8SS = udp(DIFS, preamble8SS, RTS8SS, CTS8SS, SIFS, data8SS, ACK8SS)
+            else:
+                timeToSend8SS = udp(DIFS, preamble8SS, RTS, CTS, SIFS, data8SS, ACK)
         elif (chosenProtocol == "TCP"):
-            timeToSend8SS = tcp(DIFS, preamble8SS, RTS8SS, CTS8SS, SIFS, data8SS, ACK8SS, tcpACK8SS)
+            if (chosenDataRate == "min"):
+                timeToSend8SS = tcp(DIFS, preamble8SS, RTS8SS, CTS8SS, SIFS, data8SS, ACK8SS, tcpACK8SS)
+            else:
+                timeToSend8SS = tcp(DIFS, preamble8SS, RTS, CTS, SIFS, data8SS, ACK, tcpACK8SS)
         throughput8SS = (12000)/(timeToSend8SS)
         print("\n\nWith a 160 MHz channel and 8 spatial streams and a bitrate of 9607.8 Mbps:\n")
         print(f"\n\tThe time to send a packet is {timeToSend8SS} microseconds")
