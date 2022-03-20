@@ -138,7 +138,7 @@ wlanOptions = {
         "SIFS": 10,
         "DIFS": 28,
         "ACK": 26,
-        "Data": 2063,
+        "Data": 2066,
         "Preamble": 20,
         "tcpACK": 118       
         }
