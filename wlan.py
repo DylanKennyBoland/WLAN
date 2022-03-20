@@ -396,7 +396,7 @@ while (userDone == False):
     print(endQuestion)
     answer = input()
     if (answer == "y"):
-        print("") # skip to next line as want the next printout to be apart from the user's response in the console
+        print("") # skip to next line as we want the next printout to be apart from the user's response in the console
         continue
     else:
         print(goodbyeMsg)
