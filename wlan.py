@@ -242,8 +242,10 @@ def tcp(difs, preamble, rts, cts, sifs, data, ack, tcpack):
     return timeToSend
 
 # Some print-out messages that our program will use:
-welcomeMsg = """Welcome. This program allows a user to see the MAC throughput in both
-normal and best-case scenarios for various 802.11 IEEE WLAN standards.\n\n"""
+welcomeMsg = """\nWelcome! This program allows a user to see the MAC throughput in both
+normal, worst-case, and best-case scenarios for various IEEE 802.11 WLAN standards.\n\n
+Please note: 802.11ac Wave 1 (W1) and 802.11ac Wave 2 (W2) can be investigated by choosing
+the 802.11ac option.\n\n"""
 endQuestion = """\nWould you like to investigate another 802.11 standard? [y/n]"""
 goodbyeMsg = """\n\nThanks and goodbye!"""
 invalidOptionMsg = "Please enter a valid option."
@@ -320,9 +322,9 @@ while (userDone == False):
     if (chosenStandard == "802.11n"):
         spatialStreamDetails = wlanOptions[chosenStandard]["Spatial stream Info."]
         preamble4SS = spatialStreamDetails["4 SS"]["Preamble"]
-        tcpACK4SS = spatialStreamDetails["4 SS"]["tcpACK"]
         if (chosenDataRate == "max"):
             data4SS = spatialStreamDetails["4 SS"]["Data at max rate"]
+            tcpACK4SS = spatialStreamDetails["4 SS"]["tcpACK"]
         else: # some small differences when operating at the min rate
             data4SS = spatialStreamDetails["4 SS"]["Data at min rate"]
             CTS4SS = spatialStreamDetails["4 SS"]["CTS at min rate"]
